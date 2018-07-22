@@ -10,6 +10,7 @@ impl App {
             .version(crate_version!())
             .about("Run your CI locally")
             .setting(AppSettings::SubcommandRequiredElseHelp)
+            .setting(AppSettings::VersionlessSubcommands)
             .subcommand(
                 SubCommand::with_name("run")
                     .about("Run all of the steps")
