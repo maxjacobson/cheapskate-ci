@@ -3,8 +3,8 @@ use config_file::ConfigFile;
 pub struct StepRunner;
 
 impl StepRunner {
-    pub fn run() {
-        for step in ConfigFile::new().steps() {
+    pub fn run(config_file: &ConfigFile) {
+        for step in config_file.steps() {
             step.run();
         }
     }

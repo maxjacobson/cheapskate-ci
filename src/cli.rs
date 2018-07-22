@@ -1,4 +1,5 @@
 use clap::{App as ClapApp, AppSettings, Arg, SubCommand};
+use config_file::ConfigFile;
 use github::Status;
 use step_runner::StepRunner;
 
@@ -25,10 +26,12 @@ impl App {
             .get_matches();
 
         if let Some(matches) = matches.subcommand_matches("run") {
-            StepRunner::run();
+            let config_file = ConfigFile::new();
+
+            StepRunner::run(&config_file);
 
             if matches.is_present("send status") {
-                Status::send_success();
+                Status::send_success(&config_file);
             } else {
                 debug!("Not going to send status");
             }

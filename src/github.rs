@@ -11,7 +11,7 @@ static CONTEXT: &'static str = "cheapskate-ci";
 pub struct Status;
 
 impl Status {
-    pub fn send_success() {
+    pub fn send_success(config_file: &ConfigFile) {
         let token = psst::new("cheapskate-ci")
             .expect("Could not initialize psst")
             .get("github_token")
@@ -26,7 +26,7 @@ impl Status {
         payload.insert("description", &description);
         payload.insert("context", CONTEXT);
 
-        let repo_full_name = ConfigFile::new().repo_full_name();
+        let repo_full_name = config_file.repo_full_name();
         let sha = git::get_latest_sha();
 
         let url = format!(
