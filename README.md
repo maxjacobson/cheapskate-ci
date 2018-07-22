@@ -2,7 +2,7 @@
 
 Run your CI locally.
 
-## Setup
+## Installation
 
 * Run `cargo install cheapskate-ci`, or
 * Clone the repository and run `cargo install --path .`
@@ -20,10 +20,10 @@ Example pre-commit hook (to make sure all commits are passing):
 cheapskate-ci run
 ```
 
-Example post-push hook:
+There's no post-push hook, unfortunately, so after pushing you'll want to manually run:
 
 ```shell
-#!/bin/sh
-
 cheapskate-ci run --status
 ```
+
+Which will again run the steps, and then send a successful commit status to GitHub.
