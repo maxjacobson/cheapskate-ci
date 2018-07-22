@@ -1,39 +1,30 @@
 use config_file::ConfigFile;
 use git;
+use psst;
+use reqwest;
+use std::collections::HashMap;
 use std::process;
 use std::str;
 
 static CONTEXT: &'static str = "cheapskate-ci";
 
-#[derive(Debug)]
-enum State {
-    // Error,
-    // Failure,
-    // Pending,
-    Success,
-}
-
-#[derive(Debug)]
-struct StatusPayload {
-    state: State,
-    target_url: String,
-    description: String,
-    context: String,
-}
-
 pub struct Status;
 
 impl Status {
     pub fn send_success() {
+        let token = psst::new("cheapskate-ci")
+            .expect("Could not initialize psst")
+            .get("github_token")
+            .expect("Could not read github_token");
+
         let user = Self::capture("whoami");
         let hostname = Self::capture("hostname");
+        let description = format!("All steps passed locally on {}@{}", user, hostname);
 
-        let payload = StatusPayload {
-            state: State::Success,
-            target_url: "https://hardscrabble.net".to_string(),
-            description: format!("All steps passed locally on {}@{}", user, hostname),
-            context: CONTEXT.to_string(),
-        };
+        let mut payload = HashMap::new();
+        payload.insert("state", "success");
+        payload.insert("description", &description);
+        payload.insert("context", CONTEXT);
 
         let repo_full_name = ConfigFile::new().repo_full_name();
         let sha = git::get_latest_sha();
@@ -44,6 +35,22 @@ impl Status {
         );
 
         info!("Going to send status: {:?} to {}", payload, url);
+
+        let mut headers = reqwest::header::Headers::new();
+        headers.set(reqwest::header::Authorization(format!("token {}", token)));
+
+        let client = reqwest::Client::builder()
+            .default_headers(headers)
+            .build()
+            .expect("Could not build client");
+
+        let response = client
+            .post(&url)
+            .json(&payload)
+            .send()
+            .expect("Could not send request");
+
+        info!("Response: {:#?}", response);
     }
 
     fn capture(command: &str) -> String {

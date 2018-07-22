@@ -7,4 +7,6 @@ authors = ["Max Jacobson <max@hardscrabble.net>"]
 clap = "2.32.0"
 env_logger = "0.5.10"
 log = "0.4.3"
+psst = "0.1"
+reqwest = "0.8"
 toml = "0.4"
