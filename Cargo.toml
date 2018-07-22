@@ -2,6 +2,11 @@
 name = "cheapskate-ci"
 version = "0.1.0"
 authors = ["Max Jacobson <max@hardscrabble.net>"]
+readme = "README.md"
+description = "CLI for those who are too cheap to pay for CI but still want required GitHub status checks. Now they can run this locally."
+license = "MIT"
+repository = "https://github.com/maxjacobson/cheapskate-ci"
+keywords = ["ci"]
 
 [dependencies]
 clap = "2.32.0"
