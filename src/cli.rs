@@ -29,7 +29,7 @@ impl App {
             if matches.is_present("send status") {
                 Status::send_success();
             } else {
-                info!("Not going to send status");
+                debug!("Not going to send status");
             }
         } else {
             unreachable!()

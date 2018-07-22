@@ -34,7 +34,7 @@ impl Status {
             repo_full_name, sha
         );
 
-        info!("Going to send status: {:?} to {}", payload, url);
+        debug!("Going to send status: {:?} to {}", payload, url);
 
         let mut headers = reqwest::header::Headers::new();
         headers.set(reqwest::header::Authorization(format!("token {}", token)));
@@ -50,7 +50,8 @@ impl Status {
             .send()
             .expect("Could not send request");
 
-        info!("Response: {:#?}", response);
+        info!("Response status: {:?}", response.status());
+        debug!("Full response: {:#?}", response);
     }
 
     fn capture(command: &str) -> String {

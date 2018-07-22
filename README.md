@@ -17,15 +17,13 @@ Example pre-commit hook (to make sure all commits are passing):
 ```shell
 #!/bin/sh
 
-export RUST_LOG="cheapskate_ci=debug"
 cheapskate-ci run
 ```
 
-Example pre-push hook:
+Example post-push hook:
 
 ```shell
 #!/bin/sh
 
-export RUST_LOG="cheapskate_ci=debug"
 cheapskate-ci run --status
 ```

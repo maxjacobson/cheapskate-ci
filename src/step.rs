@@ -12,7 +12,7 @@ impl Step {
     }
 
     pub fn run(&self) {
-        info!("OK, going to run step: {:?}", self.command);
+        debug!("OK, going to run step: {:?}", self.command);
 
         let mut parts = self.command.split_whitespace();
         let command = parts
