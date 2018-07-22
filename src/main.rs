@@ -6,6 +6,10 @@ extern crate log;
 extern crate toml;
 
 mod cli;
+mod config_file;
+mod git;
+mod github;
+mod step;
 mod step_runner;
 
 use cli::App;

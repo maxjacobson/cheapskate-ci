@@ -9,11 +9,23 @@ Run your CI locally.
 
 ## Usage
 
-Example pre-commit hook:
+Create a `cheapskate-ci.toml` in the root of your project.
+See [cheapskate-ci.toml](cheapskate-ci.toml) for an example.
+
+Example pre-commit hook (to make sure all commits are passing):
 
 ```shell
 #!/bin/sh
 
 export RUST_LOG="cheapskate_ci=debug"
 cheapskate-ci run
+```
+
+Example pre-push hook:
+
+```shell
+#!/bin/sh
+
+export RUST_LOG="cheapskate_ci=debug"
+cheapskate-ci run --status
 ```
