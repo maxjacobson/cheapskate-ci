@@ -1,9 +1,17 @@
 #[macro_use]
 extern crate clap;
+extern crate env_logger;
+#[macro_use]
+extern crate log;
+extern crate toml;
 
 mod cli;
+mod step_runner;
+
 use cli::App;
 
 fn main() {
+    env_logger::init();
+
     App::run();
 }

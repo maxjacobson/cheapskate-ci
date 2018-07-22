@@ -5,3 +5,6 @@ authors = ["Max Jacobson <max@hardscrabble.net>"]
 
 [dependencies]
 clap = "2.32.0"
+env_logger = "0.5.10"
+log = "0.4.3"
+toml = "0.4"

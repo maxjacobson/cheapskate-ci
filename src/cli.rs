@@ -1,4 +1,5 @@
 use clap::{App as ClapApp, AppSettings, SubCommand};
+use step_runner::StepRunner;
 
 pub struct App;
 
@@ -12,7 +13,7 @@ impl App {
             .get_matches();
 
         if let Some(_matches) = matches.subcommand_matches("run") {
-            println!("OK, going to run your steps");
+            StepRunner::run();
         } else {
             unreachable!()
         }
