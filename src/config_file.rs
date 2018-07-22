@@ -18,7 +18,7 @@ impl ConfigFile {
             .parse::<toml::Value>()
             .expect("Could not parse file");
 
-        ConfigFile { value: value }
+        ConfigFile { value }
     }
 
     pub fn steps(&self) -> Vec<Step> {
