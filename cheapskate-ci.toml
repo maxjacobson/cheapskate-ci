@@ -1,6 +1,6 @@
 [ci]
 steps = [
-  "cargo fmt --all -- --write-mode=diff",
+  "cargo fmt --all -- --check",
   "cargo check --quiet --all",
   "cargo test --all",
 ]
