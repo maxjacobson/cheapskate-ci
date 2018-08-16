@@ -1,6 +1,10 @@
 use std::process;
 use std::str;
 
+pub trait Runnable {
+    fn run(&self);
+}
+
 #[derive(Clone, Debug)]
 pub struct Step {
     command: String,
@@ -10,8 +14,10 @@ impl Step {
     pub fn new(command: String) -> Self {
         Self { command }
     }
+}
 
-    pub fn run(&self) {
+impl Runnable for Step {
+    fn run(&self) {
         debug!("OK, going to run step: {:?}", self.command);
 
         let mut parts = self.command.split_whitespace();
