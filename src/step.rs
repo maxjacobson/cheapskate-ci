@@ -18,7 +18,7 @@ impl Step {
 
 impl Runnable for Step {
     fn run(&self) {
-        debug!("OK, going to run step: {:?}", self.command);
+        info!("OK, going to run step: {:?}", self.command);
 
         let mut parts = self.command.split_whitespace();
         let command = parts
