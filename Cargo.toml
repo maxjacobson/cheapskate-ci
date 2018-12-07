@@ -1,7 +1,7 @@
 [package]
 name = "cheapskate-ci"
 edition = "2018"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Max Jacobson <max@hardscrabble.net>"]
 readme = "README.md"
 description = "CLI for those who are too cheap to pay for CI but still want required GitHub status checks. Now they can run this locally."
