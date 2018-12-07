@@ -36,17 +36,14 @@ impl Status {
 
         debug!("Going to send status: {:?} to {}", payload, url);
 
-        let mut headers = reqwest::header::Headers::new();
-        headers.set(reqwest::header::Authorization(format!("token {}", token)));
-
         let client = reqwest::Client::builder()
-            .default_headers(headers)
             .build()
             .expect("Could not build client");
 
         let response = client
             .post(&url)
             .json(&payload)
+            .bearer_auth(token)
             .send()
             .expect("Could not send request");
 
@@ -60,8 +57,9 @@ impl Status {
                 .output()
                 .expect(&format!("Could not run {}", command))
                 .stdout,
-        ).expect(&format!("Could not convert `{}` to string", command))
-            .trim()
-            .to_string()
+        )
+        .expect(&format!("Could not convert `{}` to string", command))
+        .trim()
+        .to_string()
     }
 }
