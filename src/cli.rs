@@ -1,7 +1,8 @@
-use clap::{App as ClapApp, AppSettings, Arg, SubCommand};
-use config_file::ConfigFile;
-use github::Status;
-use step_runner::StepRunner;
+use crate::config_file::ConfigFile;
+use crate::github::Status;
+use crate::step_runner::StepRunner;
+use clap::{crate_version, App as ClapApp, AppSettings, Arg, SubCommand};
+use log::debug;
 
 pub struct App;
 

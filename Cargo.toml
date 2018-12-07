@@ -1,5 +1,6 @@
 [package]
 name = "cheapskate-ci"
+edition = "2018"
 version = "0.1.4"
 authors = ["Max Jacobson <max@hardscrabble.net>"]
 readme = "README.md"

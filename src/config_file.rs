@@ -1,6 +1,6 @@
+use crate::step::Step;
 use std::fs::File;
 use std::io::prelude::*;
-use step::Step;
 use toml;
 
 pub struct ConfigFile {
