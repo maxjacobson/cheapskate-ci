@@ -7,7 +7,7 @@ use log::debug;
 pub struct App;
 
 impl App {
-    pub fn run() {
+    pub async fn run() {
         let matches = ClapApp::new("Cheapskate CI")
             .version(crate_version!())
             .about("Run your CI locally")
@@ -32,7 +32,7 @@ impl App {
             StepRunner::run(&config_file);
 
             if matches.is_present("send status") {
-                Status::send_success(&config_file);
+                Status::send_success(&config_file).await;
             } else {
                 debug!("Not going to send status");
             }

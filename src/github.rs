@@ -12,7 +12,7 @@ static CONTEXT: &'static str = "cheapskate-ci";
 pub struct Status;
 
 impl Status {
-    pub fn send_success(config_file: &ConfigFile) {
+    pub async fn send_success(config_file: &ConfigFile) {
         let token = psst::new("cheapskate-ci")
             .expect("Could not initialize psst")
             .get("github_token")
@@ -46,7 +46,7 @@ impl Status {
             .json(&payload)
             .bearer_auth(token)
             .send()
-            .expect("Could not send request");
+            .await.expect("Could not send request");
 
         info!("Response status: {:?}", response.status());
         debug!("Full response: {:#?}", response);
