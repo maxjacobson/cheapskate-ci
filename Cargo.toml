@@ -12,7 +12,7 @@ keywords = ["ci"]
 [dependencies]
 clap = "2.34.0"
 env_logger = "0.10.0"
-log = "0.4.17"
+log = "0.4.18"
 psst = "0.1"
 reqwest = { version = "0.11", features = ["json"] }
 tokio = { version = "1.27.0", features = ["full"] }
