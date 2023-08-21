@@ -46,7 +46,8 @@ impl Status {
             .json(&payload)
             .bearer_auth(token)
             .send()
-            .await.expect("Could not send request");
+            .await
+            .expect("Could not send request");
 
         info!("Response status: {:?}", response.status());
         debug!("Full response: {:#?}", response);
