@@ -10,7 +10,7 @@ repository = "https://github.com/maxjacobson/cheapskate-ci"
 keywords = ["ci"]
 
 [dependencies]
-clap = { version = "4.3.23", features = ["derive"] }
+clap = { version = "4.3.24", features = ["derive"] }
 env_logger = "0.10.0"
 log = "0.4.20"
 psst = "0.1"
