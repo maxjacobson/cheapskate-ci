@@ -3,7 +3,7 @@ use std::str;
 
 pub fn get_latest_sha() -> String {
     let output = process::Command::new("git")
-        .args(&["rev-parse", "HEAD"])
+        .args(["rev-parse", "HEAD"])
         .output()
         .expect("Could not run git rev-parse HEAD");
 

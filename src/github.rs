@@ -1,13 +1,11 @@
 use crate::config_file::ConfigFile;
 use crate::git;
 use log::{debug, info};
-use psst;
-use reqwest;
 use std::collections::HashMap;
 use std::process;
 use std::str;
 
-static CONTEXT: &'static str = "cheapskate-ci";
+static CONTEXT: &str = "cheapskate-ci";
 
 pub struct Status;
 
@@ -57,10 +55,10 @@ impl Status {
         str::from_utf8(
             &process::Command::new(command)
                 .output()
-                .expect(&format!("Could not run {}", command))
+                .unwrap_or_else(|_| panic!("Could not run {}", command))
                 .stdout,
         )
-        .expect(&format!("Could not convert `{}` to string", command))
+        .unwrap_or_else(|_| panic!("Could not convert `{}` to string", command))
         .trim()
         .to_string()
     }
