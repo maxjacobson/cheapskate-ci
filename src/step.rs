@@ -32,12 +32,12 @@ impl Runnable for Step {
             .unwrap_or_else(|_| panic!("Failed to run {}", self.command));
 
         if output.status.success() {
-            info!("Command passed: {}", &self.command);
+            info!("Command passed: {}", self.command);
         } else {
             let stderr = str::from_utf8(&output.stderr)
                 .unwrap_or_else(|_| panic!("Failed to parse stderr of command: {}", self.command));
             println!("{}", stderr);
-            panic!("Command failed: {}", &self.command);
+            panic!("Command failed: {}", self.command);
         }
     }
 }
