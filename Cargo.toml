@@ -16,4 +16,4 @@ log = "0.4.26"
 psst = "0.1"
 reqwest = { version = "0.13", features = ["json"] }
 tokio = { version = "1.47.1", features = ["full"] }
-toml = "0.9"
+toml = "1.1"
